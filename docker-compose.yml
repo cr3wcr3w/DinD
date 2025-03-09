@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  dind:
+    image: docker-in-docker-custom
+    build: .
+    privileged: true
+    command: ["dockerd-entrypoint.sh"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
